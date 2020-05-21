@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.inhatc.edelia.dao.IDao">
+	<select id="list" resultType="kr.inhatc.edelia.dto.BDto">
+		SELECT * FROM MENU
+	</select>
+	<select id="modify_view" resultType="kr.inhatc.edelia.dto.BDto">
+		SELECT * FROM MENU WHERE MID=#{param1}
+	</select>
+	<insert id="enroll">
+		INSERT INTO MENU(MID, MNAME, MPRICE, MSIZE, MNA, MFAT, MSUGAR, MPRO, MCA, MIMG, MKIND) VALUES (MENU_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8}, #{param9}, #{param10})
+	</insert>
+	<insert id="join">
+		INSERT INTO EDELIAUSER(UNUM, ID, PW, NAME, HP, EMAIL, AUTHORITY, STATE) VALUES (EDELIAUSER_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, 'ROLE_USER', 1)
+	</insert>
+	<update id="modify">
+		UPDATE MENU SET MNAME=#{param1}, MPRICE=#{param2}, MSIZE=#{param3}, MNA=#{param4}, MFAT=#{param5}, MSUGAR=#{param6}, MPRO=#{param7}, MCA=#{param8}, MIMG=#{param9}, MKIND=#{param10} WHERE MID=#{param11}
+	</update>
+	<select id="coffee_menu" resultType="kr.inhatc.edelia.dto.BDto">
+		SELECT * FROM MENU WHERE MKIND=1
+	</select>
+	<select id="a_coffee_menu" resultType="kr.inhatc.edelia.dto.BDto">
+		SELECT * FROM MENU WHERE MKIND=1
+	</select>
+	<select id="drink_tea_menu" resultType="kr.inhatc.edelia.dto.BDto">
+		SELECT * FROM MENU WHERE MKIND=2
+	</select>
+	<select id="a_drink_tea_menu" resultType="kr.inhatc.edelia.dto.BDto">
+		SELECT * FROM MENU WHERE MKIND=2
+	</select>
+	<select id="dessert_menu" resultType="kr.inhatc.edelia.dto.BDto">
+		SELECT * FROM MENU WHERE MKIND=3
+	</select>
+	<select id="a_dessert_menu" resultType="kr.inhatc.edelia.dto.BDto">
+		SELECT * FROM MENU WHERE MKIND=3
+	</select>
+</mapper>
